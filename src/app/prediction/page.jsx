@@ -108,7 +108,10 @@ const MedicalForm = () => {
   //     ],
   //     follow_up:
   //       "Schedule a follow-up in 4-6 weeks to assess treatment effectiveness and manage any new symptoms.",
-  //     image_analysis: "Some data",
+  //     image_analysis: {
+  //       prediction: "Alzheimer's Disease",
+  //       confidence: "90% confidence level",
+  //     },
   //   };
 
   //   // Use this dummy result to test the display
@@ -214,6 +217,15 @@ const MedicalForm = () => {
               </p>
               <div className="mt-4">
                 <h3 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+                  Image Analysis
+                </h3>
+                <p className="text-neutral-600 dark:text-neutral-300">
+                  {result.image_analysis.prediction} -{" "}
+                  {result.image_analysis.confidence}
+                </p>
+              </div>
+              <div className="mt-4">
+                <h3 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
                   Probable Diagnoses
                 </h3>
                 <ul className="list-disc list-inside text-neutral-600 dark:text-neutral-300">
@@ -280,15 +292,6 @@ const MedicalForm = () => {
                 </h3>
                 <p className="text-neutral-600 dark:text-neutral-300">
                   {result.follow_up}
-                </p>
-              </div>
-              <div className="mt-4">
-                <h3 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
-                  Image Analysis
-                </h3>
-                <p className="text-neutral-600 dark:text-neutral-300">
-                  {result.image_analysis.prediction} -{" "}
-                  {result.image_analysis.confidence}
                 </p>
               </div>
             </div>

@@ -230,17 +230,17 @@ const Page = () => {
                   <h3 className="content-item text-white text-3xl font-sans md:text-4xl lg:text-5xl whitespace-nowrap p-5 font-bold mb-8">
                     Existing Solution
                   </h3>
-                  <p className="content-item flex items-center font-sans text-red-200 text-2xl font-medium pl-5 pb-14">
+                  <p className="content-item flex items-center font-sans text-red-200 text-2xl font-medium pl-5 pb-10">
                     <span className="mr-2 text-red-500">&#x2716;</span>
-                    Reliance on Memory
+                    Manual Scan Reading
                   </p>
-                  <p className="content-item flex items-center font-sans text-red-200 text-red text-2xl font-medium pl-5 pb-16">
+                  <p className="content-item flex items-center font-sans text-red-200 text-red text-2xl font-medium pl-5 pb-10">
                     <span className="mr-2 text-red-500">&#x2716;</span>
-                    Lack of Personalization
+                    Manual Prescription Writing
                   </p>
                   <p className="content-item flex items-center font-sans text-red-200 text-red text-2xl font-medium pl-5 pb-5">
                     <span className="mr-2 text-red-500">&#x2716;</span>
-                    Inconsistent Reminders
+                    Requires Additional Staff
                   </p>
                 </div>
               </div>
@@ -254,15 +254,15 @@ const Page = () => {
                   </h3>
                   <p className="content-item flex items-center font-sans text-green-200 text-2xl font-medium pl-5 pb-10">
                     <span className="mr-2 text-green-500">&#x2714;</span>
-                    Automated Prescription Reading
+                    Automated Scan Analysis
                   </p>
                   <p className="content-item flex items-center font-sans text-green-200 text-2xl font-medium pl-5 pb-10">
                     <span className="mr-2 text-green-500">&#x2714;</span>
-                    Personalized Voice Reminders
+                    Automated Prescription Writing
                   </p>
                   <p className="content-item flex items-center font-sans text-green-200 text-2xl font-medium pl-5 pb-16">
                     <span className="mr-2 text-green-500">&#x2714;</span>
-                    Consistent and on-time Reminders
+                    No Additional Staff Required
                   </p>
                 </div>
               </div>

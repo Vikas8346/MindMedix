@@ -12,30 +12,6 @@ const Page = () => {
 
   console.log(session?.user);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/api/predict", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            patient_info: "Hello!!",
-            query_type: "Hello!!",
-          }),
-        });
-
-        const result = await response.json();
-        console.log("result :", result.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   if (!session) {
     redirect("/auth/login");
   }
@@ -128,25 +104,25 @@ const Page = () => {
               id="problem-text"
               className="text-white text-center text-4xl mb-16 md:text-5xl lg:text-6xl font-sans font-bold leading-relaxed"
             >
-              The problems
+              The Problems With Manual Process Is
             </h2>
             <h2
               id="problem-text"
               className="text-custom-purple text-center mb-16 font-sans  text-3xl md:text-4xl lg:text-5xl font-semibold leading-snug mt-2"
             >
-              Forgetting Medication Timings
+              Delayed Due To Under Staffing
             </h2>
             <h2
               id="problem-text"
               className="text-custom-purple2 text-center mb-16 font-sans  text-3xl md:text-4xl lg:text-5xl font-semibold leading-snug mt-2"
             >
-              Living Alone without Assistance
+              Time Consuming
             </h2>
             <h2
               id="problem-text"
               className="text-custom-purple3 text-center font-sans  text-3xl md:text-4xl lg:text-5xl font-semibold leading-snug mt-2"
             >
-              Lack of Personalized Reminders
+              Error Prone
             </h2>
           </div>
           <div className="bg-black w-full pb-40">
@@ -179,11 +155,11 @@ const Page = () => {
                   className="object-contain pb-2"
                 />
                 <h2 className="text-white font-bold font-sans text-center text-xl mt-3 pb-1">
-                  Personalized Reminders
+                  Completely Automated Process
                 </h2>
                 <p className="text-center font-inter font-extralight text-white text-base">
-                  Tailored medication alerts based on your unique prescription
-                  needs
+                  All your medical needs are automated; enter complete details
+                  and get on point suggestions for your medical needs
                 </p>
               </div>
 
@@ -198,11 +174,11 @@ const Page = () => {
                   className="object-contain"
                 />
                 <h2 className="text-white font-bold font-sans text-center text-xl mt-5 pb-1">
-                  Interactive Voice Assistance
+                  All In One Place
                 </h2>
                 <p className="text-center text-white font-light font-inter text-base">
-                  Engage with voice-enabled medicine reminder for timely
-                  reminders.
+                  From MRI Scan outputs to personalised plans and medication,
+                  all your needs in one place!
                 </p>
               </div>
 
@@ -217,11 +193,11 @@ const Page = () => {
                   className="object-contain"
                 />
                 <h2 className="text-white font-bold font-sans text-center text-xl mt-3 pb-1">
-                  Prescription Reader
+                  AI Driven Precision
                 </h2>
                 <p className="text-center text-white font-light font-inter text-base">
-                  Streamline your prescription management and ensure accurate
-                  medication intake effortlessly.
+                  With a model accuracy of 91%, we ensure you get the best and
+                  most precise recommendations for your medical needs.
                 </p>
               </div>
 
@@ -236,12 +212,11 @@ const Page = () => {
                   className="object-contain"
                 />
                 <h2 className="text-white font-bold font-sans text-center text-xl mt-3 pb-1">
-                  Medicine Buying Recommendations
+                  Comprehensive Tailored Care
                 </h2>
                 <p className="text-center text-white font-light font-inter text-base">
-                  Receive personalized suggestions for purchasing medications,
-                  ensuring you find the best prices and reputable pharmacies for
-                  your needs.
+                  Receive personalized suggestions for Treatment Plans, ensuring
+                  you find the best care for your needs.
                 </p>
               </div>
             </div>

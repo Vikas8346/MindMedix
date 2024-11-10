@@ -79,7 +79,7 @@ export default function Navbar() {
               <span>{session.user?.email}</span>
               <Link href="/prediction">
                 <button className="bg-white text-black px-3 py-2 tracking-normal font-sans font-semibold rounded-lg hover:bg-purple-500 hover:text-white transition-colors duration-300">
-                  Dashboard
+                  Get Started
                 </button>
               </Link>
               <button

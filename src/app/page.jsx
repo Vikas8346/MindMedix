@@ -20,8 +20,8 @@ const Page = () => {
     session && (
       <div className="bg-[url('/bg.svg')] bg-cover min-h-screen flex flex-col overflow-x-hidden">
         <Head>
-          <title>MediMitra</title>
-          <meta name="description" content="Voice Enabled Medicines Reminder" />
+          <title>NeuroGenAI</title>
+          <meta name="description" content="" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 

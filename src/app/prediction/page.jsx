@@ -8,27 +8,28 @@ import { useEffect, useState } from "react";
 
 const MedicalForm = () => {
   const { data: session, status: sessionStatus } = useSession();
+  const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const name = e.target.elements.name.value;
-    const age = e.target.elements.age.value;
-    const symptoms = e.target.elements.symptoms.value;
-    const medicalHistory = e.target.elements.medicalHistory.value;
-    const currentMedications = e.target.elements.currentMedications.value;
-    const recentVitalSigns = e.target.elements.recentVitalSigns.value;
-    const image = e.target.elements.image.files[0];
 
-    if (
-      !name ||
-      !age ||
-      !symptoms ||
-      !medicalHistory ||
-      !currentMedications ||
-      !recentVitalSigns ||
-      !image
-    ) {
+    const formData = new FormData();
+    formData.append("name", e.target.elements.name.value);
+    formData.append("age", e.target.elements.age.value);
+    formData.append("symptoms", e.target.elements.symptoms.value);
+    formData.append("medicalHistory", e.target.elements.medicalHistory.value);
+    formData.append(
+      "currentMedications",
+      e.target.elements.currentMedications.value
+    );
+    formData.append(
+      "recentVitalSigns",
+      e.target.elements.recentVitalSigns.value
+    );
+    formData.append("image", e.target.elements.image.files[0]);
+
+    if ([...formData.values()].includes("")) {
       console.log("Please fill all the fields");
       return;
     }
@@ -36,29 +37,22 @@ const MedicalForm = () => {
     try {
       const res = await fetch("/api/predict", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          age,
-          symptoms,
-          medicalHistory,
-          currentMedications,
-          recentVitalSigns,
-          image: image,
-        }),
+        body: formData,
       });
+
       if (res.status === 400) {
         console.log("Error");
-      }
-      if (res.status === 200) {
+      } else if (res.status === 200) {
         const data = await res.json();
         setResult(data);
       }
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
   if (!session) {
@@ -69,57 +63,57 @@ const MedicalForm = () => {
     return <h1>Loading...</h1>;
   }
 
-  useEffect(() => {
-    const dummyResult = {
-      diagnosis_details:
-        "John Doe is a 65-year-old male experiencing frequent headaches, dizziness, and occasional blurred vision. He has a history of hypertension and Type 2 Diabetes, and his recent MRI suggests Alzheimer's with a high confidence level.",
-      probable_diagnoses: [
-        "Alzheimer's Disease",
-        "Hypertensive crisis",
-        "Diabetic complications",
-      ],
-      treatment_plans: [
-        "Initiate Alzheimer's disease management with cholinesterase inhibitors",
-        "Optimize blood pressure control",
-        "Enhance diabetes management",
-      ],
-      lifestyle_modifications: [
-        "Engage in regular physical exercise",
-        "Adopt a heart-healthy diet, such as the DASH diet",
-        "Monitor blood glucose levels regularly",
-      ],
-      medications: [
-        {
-          name: "Metformin",
-          dosage: "1000 mg daily",
-        },
-        {
-          name: "Lisinopril",
-          dosage: "10 mg daily",
-        },
-        {
-          name: "Cholinesterase inhibitor",
-          dosage: "as per doctor's prescription",
-        },
-      ],
-      additional_tests: [
-        "Cognitive function tests",
-        "Comprehensive metabolic panel",
-        "Further neuroimaging studies if needed",
-      ],
-      precautions: [
-        "Avoid activities that could lead to falls due to dizziness",
-        "Monitor for signs of severe hypertension",
-        "Regular check-ups for Alzheimer's progression",
-      ],
-      follow_up:
-        "Schedule a follow-up in 4-6 weeks to assess treatment effectiveness and manage any new symptoms.",
-      image_analysis: "Some data",
-    };
+  // useEffect(() => {
+  //   const dummyResult = {
+  //     diagnosis_details:
+  //       "John Doe is a 65-year-old male experiencing frequent headaches, dizziness, and occasional blurred vision. He has a history of hypertension and Type 2 Diabetes, and his recent MRI suggests Alzheimer's with a high confidence level.",
+  //     probable_diagnoses: [
+  //       "Alzheimer's Disease",
+  //       "Hypertensive crisis",
+  //       "Diabetic complications",
+  //     ],
+  //     treatment_plans: [
+  //       "Initiate Alzheimer's disease management with cholinesterase inhibitors",
+  //       "Optimize blood pressure control",
+  //       "Enhance diabetes management",
+  //     ],
+  //     lifestyle_modifications: [
+  //       "Engage in regular physical exercise",
+  //       "Adopt a heart-healthy diet, such as the DASH diet",
+  //       "Monitor blood glucose levels regularly",
+  //     ],
+  //     medications: [
+  //       {
+  //         name: "Metformin",
+  //         dosage: "1000 mg daily",
+  //       },
+  //       {
+  //         name: "Lisinopril",
+  //         dosage: "10 mg daily",
+  //       },
+  //       {
+  //         name: "Cholinesterase inhibitor",
+  //         dosage: "as per doctor's prescription",
+  //       },
+  //     ],
+  //     additional_tests: [
+  //       "Cognitive function tests",
+  //       "Comprehensive metabolic panel",
+  //       "Further neuroimaging studies if needed",
+  //     ],
+  //     precautions: [
+  //       "Avoid activities that could lead to falls due to dizziness",
+  //       "Monitor for signs of severe hypertension",
+  //       "Regular check-ups for Alzheimer's progression",
+  //     ],
+  //     follow_up:
+  //       "Schedule a follow-up in 4-6 weeks to assess treatment effectiveness and manage any new symptoms.",
+  //     image_analysis: "Some data",
+  //   };
 
-    // Use this dummy result to test the display
-    setResult(dummyResult);
-  }, []);
+  //   // Use this dummy result to test the display
+  //   setResult(dummyResult);
+  // }, []);
 
   return (
     session && (
@@ -192,7 +186,13 @@ const MedicalForm = () => {
                 {/* upload image */}
                 <LabelInputContainer className="mb-4">
                   <Label htmlFor="image">Upload Image</Label>
-                  <Input id="image" name="image" type="file" accept="image/*" />
+                  <Input
+                    id="image"
+                    name="image"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
                 </LabelInputContainer>
 
                 <button
@@ -282,14 +282,15 @@ const MedicalForm = () => {
                   {result.follow_up}
                 </p>
               </div>
-              {/* <div className="mt-4">
+              <div className="mt-4">
                 <h3 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
                   Image Analysis
                 </h3>
                 <p className="text-neutral-600 dark:text-neutral-300">
-                  {result.image_analysis}
+                  {result.image_analysis.prediction} -{" "}
+                  {result.image_analysis.confidence}
                 </p>
-              </div> */}
+              </div>
             </div>
           )}
         </div>

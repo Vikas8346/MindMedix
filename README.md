@@ -129,6 +129,4 @@ This project is licensed under the [MIT License](LICENSE).
 ## 📬 Contact  
 For inquiries or support, reach out to **MindMedix Team** via the repository's [Issues](https://github.com/Vikas8346/MindMedix/issues) section.
 
----
 
-Let me know if you’d like further tweaks! 🚀

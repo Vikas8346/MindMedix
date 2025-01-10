@@ -7,6 +7,8 @@
 Neurological conditions like strokes, tumors, and Alzheimer's disease require fast, accurate diagnoses. However, the current manual process is prone to delays and errors, especially in understaffed hospitals. This can lead to misdiagnoses, delayed treatments, and long wait times.  
 
 ✨ **MindMedix: NeuroGenAI** ✨ revolutionizes neurological care with an AI-driven platform that combines patient history, symptoms, and MRI scans to provide precise diagnoses, personalized treatments, and actionable follow-up strategies.
+## 🚀 Live Project [MindMedix](https://tinyurl.com/NeurogenAI)
+
 
 ---
 
@@ -103,7 +105,7 @@ The platform is capable of:
 ## 🖥️ Installation  
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/Vikas8346/MindMedix
+   git clone https://github.com/pkprajapati7402/MindMedix
    ```  
 2. Install dependencies:  
    ```bash

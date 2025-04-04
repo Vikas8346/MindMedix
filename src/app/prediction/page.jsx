@@ -4,11 +4,11 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "../../../lib/utils";
 import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const MedicalForm = () => {
   const { data: session, status: sessionStatus } = useSession();
-  const [file, setFile] = useState(null);
+  const [ setFile] = useState(null);
   const [result, setResult] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -63,60 +63,6 @@ const MedicalForm = () => {
     return <h1>Loading...</h1>;
   }
 
-  // useEffect(() => {
-  //   const dummyResult = {
-  //     diagnosis_details:
-  //       "John Doe is a 65-year-old male experiencing frequent headaches, dizziness, and occasional blurred vision. He has a history of hypertension and Type 2 Diabetes, and his recent MRI suggests Alzheimer's with a high confidence level.",
-  //     probable_diagnoses: [
-  //       "Alzheimer's Disease",
-  //       "Hypertensive crisis",
-  //       "Diabetic complications",
-  //     ],
-  //     treatment_plans: [
-  //       "Initiate Alzheimer's disease management with cholinesterase inhibitors",
-  //       "Optimize blood pressure control",
-  //       "Enhance diabetes management",
-  //     ],
-  //     lifestyle_modifications: [
-  //       "Engage in regular physical exercise",
-  //       "Adopt a heart-healthy diet, such as the DASH diet",
-  //       "Monitor blood glucose levels regularly",
-  //     ],
-  //     medications: [
-  //       {
-  //         name: "Metformin",
-  //         dosage: "1000 mg daily",
-  //       },
-  //       {
-  //         name: "Lisinopril",
-  //         dosage: "10 mg daily",
-  //       },
-  //       {
-  //         name: "Cholinesterase inhibitor",
-  //         dosage: "as per doctor's prescription",
-  //       },
-  //     ],
-  //     additional_tests: [
-  //       "Cognitive function tests",
-  //       "Comprehensive metabolic panel",
-  //       "Further neuroimaging studies if needed",
-  //     ],
-  //     precautions: [
-  //       "Avoid activities that could lead to falls due to dizziness",
-  //       "Monitor for signs of severe hypertension",
-  //       "Regular check-ups for Alzheimer's progression",
-  //     ],
-  //     follow_up:
-  //       "Schedule a follow-up in 4-6 weeks to assess treatment effectiveness and manage any new symptoms.",
-  //     image_analysis: {
-  //       prediction: "Alzheimer's Disease",
-  //       confidence: "90% confidence level",
-  //     },
-  //   };
-
-  //   // Use this dummy result to test the display
-  //   setResult(dummyResult);
-  // }, []);
 
   return (
     session && (
@@ -220,8 +166,8 @@ const MedicalForm = () => {
                   Image Analysis
                 </h3>
                 <p className="text-neutral-600 dark:text-neutral-300">
-                  {result.image_analysis.prediction} -{" "}
-                  {result.image_analysis.confidence}
+                  {result?.image_analysis?.prediction || "No prediction available"} -{" "}
+                  {result?.image_analysis?.confidence || "No confidence score available"}
                 </p>
               </div>
               <div className="mt-4">

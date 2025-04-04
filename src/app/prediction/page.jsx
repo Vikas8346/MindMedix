@@ -166,8 +166,8 @@ const MedicalForm = () => {
                   Image Analysis
                 </h3>
                 <p className="text-neutral-600 dark:text-neutral-300">
-                  {result.image_analysis.prediction} -{" "}
-                  {result.image_analysis.confidence}
+                  {result?.image_analysis?.prediction || "No prediction available"} -{" "}
+                  {result?.image_analysis?.confidence || "No confidence score available"}
                 </p>
               </div>
               <div className="mt-4">
